@@ -600,26 +600,32 @@ public class VideoModule implements CameraModule,
         if (mCameraDevice == null) {
             return;
         }
-        mParameters = mCameraDevice.getParameters();
-        if (mParameters.getSupportedVideoSizes() == null) {
-            mDesiredPreviewWidth = mProfile.videoFrameWidth;
-            mDesiredPreviewHeight = mProfile.videoFrameHeight;
-        } else { // Driver supports separates outputs for preview and video.
-            List<Size> sizes = mParameters.getSupportedPreviewSizes();
-            Size preferred = mParameters.getPreferredPreviewSizeForVideo();
-            int product = preferred.width * preferred.height;
-            Iterator<Size> it = sizes.iterator();
-            // Remove the preview sizes that are not preferred.
-            while (it.hasNext()) {
-                Size size = it.next();
-                if (size.width * size.height > product) {
-                    it.remove();
+        // psw0523 fix
+        if (false) {
+            mParameters = mCameraDevice.getParameters();
+            if (mParameters.getSupportedVideoSizes() == null) {
+                mDesiredPreviewWidth = mProfile.videoFrameWidth;
+                mDesiredPreviewHeight = mProfile.videoFrameHeight;
+            } else { // Driver supports separates outputs for preview and video.
+                List<Size> sizes = mParameters.getSupportedPreviewSizes();
+                Size preferred = mParameters.getPreferredPreviewSizeForVideo();
+                int product = preferred.width * preferred.height;
+                Iterator<Size> it = sizes.iterator();
+                // Remove the preview sizes that are not preferred.
+                while (it.hasNext()) {
+                    Size size = it.next();
+                    if (size.width * size.height > product) {
+                        it.remove();
+                    }
                 }
+                Size optimalSize = CameraUtil.getOptimalPreviewSize(mActivity, sizes,
+                        (double) mProfile.videoFrameWidth / mProfile.videoFrameHeight);
+                mDesiredPreviewWidth = optimalSize.width;
+                mDesiredPreviewHeight = optimalSize.height;
             }
-            Size optimalSize = CameraUtil.getOptimalPreviewSize(mActivity, sizes,
-                    (double) mProfile.videoFrameWidth / mProfile.videoFrameHeight);
-            mDesiredPreviewWidth = optimalSize.width;
-            mDesiredPreviewHeight = optimalSize.height;
+        } else {
+             mDesiredPreviewWidth = mProfile.videoFrameWidth;
+             mDesiredPreviewHeight = mProfile.videoFrameHeight;
         }
         mUI.setPreviewSize(mDesiredPreviewWidth, mDesiredPreviewHeight);
         Log.v(TAG, "mDesiredPreviewWidth=" + mDesiredPreviewWidth +
