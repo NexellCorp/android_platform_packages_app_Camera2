@@ -164,13 +164,16 @@
         <item>@string/pref_camera_picturesize_entry_2mp</item>
         <item>@string/pref_camera_picturesize_entry_2mp_wide</item>
         <item>@string/pref_camera_picturesize_entry_2mp_wide</item>
+        <item>1600 x 1200</item>
         <item>@string/pref_camera_picturesize_entry_1_5mp</item>
         <item>@string/pref_camera_picturesize_entry_1_3mp</item>
         <item>@string/pref_camera_picturesize_entry_1mp</item>
         <item>@string/pref_camera_picturesize_entry_1mp</item>
         <item>960 x 720</item>
+        <item>800 x 600</item>
         <item>720 x 480</item>
         <item>@string/pref_camera_picturesize_entry_vga</item>
+        <item>608 x 479</item>
         <item>@string/pref_camera_picturesize_entry_qvga</item>
     </string-array>
 
@@ -188,13 +191,16 @@
         <item>1600x1200</item>
         <item>1920x1088</item>
         <item>1920x1080</item>
+        <item>1600x1200</item>
         <item>1440x1080</item>
         <item>1280x960</item>
         <item>1280x720</item>
         <item>1024x768</item>
         <item>960x720</item>
+        <item>800x600</item>
         <item>720x480</item>
         <item>640x480</item>
+        <item>608x479</item>
         <item>320x240</item>
     </string-array>
 
