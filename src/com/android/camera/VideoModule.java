@@ -765,10 +765,16 @@ public class VideoModule extends CameraModule
             return;
         }
         mCameraSettings = mCameraDevice.getSettings();
-        Point desiredPreviewSize = getDesiredPreviewSize(mAppController.getAndroidContext(),
-                mCameraSettings, mCameraCapabilities, mProfile, mUI.getPreviewScreenSize());
-        mDesiredPreviewWidth = desiredPreviewSize.x;
-        mDesiredPreviewHeight = desiredPreviewSize.y;
+        // psw0523 patch for pyrope
+        if (false) {
+            Point desiredPreviewSize = getDesiredPreviewSize(mAppController.getAndroidContext(),
+                    mCameraSettings, mCameraCapabilities, mProfile, mUI.getPreviewScreenSize());
+            mDesiredPreviewWidth = desiredPreviewSize.x;
+            mDesiredPreviewHeight = desiredPreviewSize.y;
+        } else {
+            mDesiredPreviewWidth = mProfile.videoFrameWidth;
+            mDesiredPreviewHeight = mProfile.videoFrameHeight;
+        }
         mUI.setPreviewSize(mDesiredPreviewWidth, mDesiredPreviewHeight);
         Log.v(TAG, "mDesiredPreviewWidth=" + mDesiredPreviewWidth +
                 ". mDesiredPreviewHeight=" + mDesiredPreviewHeight);
