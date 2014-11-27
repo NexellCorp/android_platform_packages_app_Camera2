@@ -979,7 +979,12 @@ public class VideoModule implements CameraModule,
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
         }
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-        mMediaRecorder.setProfile(mProfile);
+        // psw0523 add for camera timelapse recording mediarecorder exception
+        try {
+            mMediaRecorder.setProfile(mProfile);
+        } catch (java.lang.IllegalStateException e){
+            Log.e(TAG, "failed to mediaRecorder.setProfile() " + e.toString());
+        }
         mMediaRecorder.setMaxDuration(mMaxVideoDurationInMs);
         if (mCaptureTimeLapse) {
             double fps = 1000 / (double) mTimeBetweenTimeLapseFrameCaptureMs;
