@@ -27,6 +27,7 @@
         <item>@string/pref_video_quality_entry_uxga</item>
         <item>@string/pref_video_quality_entry_vga</item>
         <item>@string/pref_video_quality_entry_svga</item>
+        <item>@string/pref_video_quality_entry_cif</item>
         <!-- end of psw0523 -->
    </string-array>
 
@@ -48,6 +49,8 @@
         <item>9</item>
          <!-- The integer value of CamcorderProfile.QUALITY_SVGA -->
         <item>10</item>
+         <!-- The integer value of CamcorderProfile.QUALITY_CIF -->
+        <item>3</item>
         <!-- end of psw0523 -->
     </string-array>
 

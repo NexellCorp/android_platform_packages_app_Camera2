@@ -507,6 +507,9 @@ public class CameraSettings {
         if (CamcorderProfile.hasProfile(cameraId, CamcorderProfile.QUALITY_SVGA)) {
             supported.add(Integer.toString(CamcorderProfile.QUALITY_SVGA));
         }
+        if (CamcorderProfile.hasProfile(cameraId, CamcorderProfile.QUALITY_CIF)) {
+            supported.add(Integer.toString(CamcorderProfile.QUALITY_CIF));
+        }
         // end of psw0523
         return supported;
     }
