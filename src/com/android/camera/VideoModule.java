@@ -781,10 +781,17 @@ public class VideoModule extends CameraModule
         }
 
         mCameraSettings = mCameraDevice.getSettings();
-        Point desiredPreviewSize = getDesiredPreviewSize(mAppController.getAndroidContext(),
-                mCameraSettings, mCameraCapabilities, mProfile, mUI.getPreviewScreenSize());
-        mDesiredPreviewWidth = desiredPreviewSize.x;
-        mDesiredPreviewHeight = desiredPreviewSize.y;
+        // PATCH_FOR_SLSIAP
+        if (false) {
+            Point desiredPreviewSize = getDesiredPreviewSize(mAppController.getAndroidContext(),
+                    mCameraSettings, mCameraCapabilities, mProfile, mUI.getPreviewScreenSize());
+            mDesiredPreviewWidth = desiredPreviewSize.x;
+            mDesiredPreviewHeight = desiredPreviewSize.y;
+        } else {
+            mDesiredPreviewWidth = mProfile.videoFrameWidth;
+            mDesiredPreviewHeight = mProfile.videoFrameHeight;
+        }
+        // END PATCH_FOR_SLSIAP
         mUI.setPreviewSize(mDesiredPreviewWidth, mDesiredPreviewHeight);
         Log.v(TAG, "Updated DesiredPreview=" + mDesiredPreviewWidth + "x"
                 + mDesiredPreviewHeight);
