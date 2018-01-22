@@ -405,13 +405,8 @@ public class TaskCompressImageToJpeg extends TaskJpegEncode {
         }
         Optional<Location> location = Optional.fromNullable(mSession.getLocation());
 
-        try {
-            new ExifUtil(exif).populateExif(Optional.of(image),
-                    Optional.<CaptureResultProxy>of(totalCaptureResultProxyFuture.get()), location);
-        } catch (InterruptedException | ExecutionException e) {
-            new ExifUtil(exif).populateExif(Optional.of(image),
-                    Optional.<CaptureResultProxy>absent(), location);
-        }
+        new ExifUtil(exif).populateExif(Optional.of(image),
+                Optional.<CaptureResultProxy>absent(), location);
 
         return exif;
     }
